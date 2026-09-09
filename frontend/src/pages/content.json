@@ -1,0 +1,88 @@
+{
+    "newItemDialog": {
+        "selectionFields": [
+            {
+                "label": "brand",
+                "options": [
+                    {
+                        "label": "Apple",
+                        "name": "apple"
+                    },
+                    {
+                        "label": "Samsung",
+                        "name": "samsung"
+                    },
+                    {
+                        "label": "Lenovo",
+                        "name": "lenovo"
+                    }
+                ]
+            },
+            {
+                "label": "category",
+                "options": [
+                    {
+                        "label": "Smartphones",
+                        "name": "smartphones"
+                    },
+                    {
+                        "label": "Notebooks",
+                        "name": "notebooks"
+                    },
+                    {
+                        "label": "Tablets",
+                        "name": "tablets"
+                    },
+                    {
+                        "label": "Acessórios",
+                        "name": "acessories"
+                    }
+                ]
+            }
+        ]
+    },
+    "sideBar": {
+        "filters": [
+            {
+                "label": "Marca",
+                "attrName": "brand",
+                "attributes": [
+                    {
+                        "label": "Apple",
+                        "name": "apple"
+                    },
+                    {
+                        "label": "Samsung",
+                        "name": "samsung"
+                    },
+                    {
+                        "label": "Lenovo",
+                        "name": "lenovo"
+                    }
+                ]
+            },
+            {
+                "label": "Categoria",
+                "attrName": "category",
+                "attributes": [
+                    {
+                        "label": "Smartphones",
+                        "name": "smartphones"
+                    },
+                    {
+                        "label": "Notebooks",
+                        "name": "notebooks"
+                    },
+                    {
+                        "label": "Tablets",
+                        "name": "tablets"
+                    },
+                    {
+                        "label": "Acessórios",
+                        "name": "acessories"
+                    }
+                ]
+            }
+        ]
+    }
+}

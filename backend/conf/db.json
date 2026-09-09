@@ -1,0 +1,24 @@
+{
+    "items": [
+        { "id": 1, "name": "Item 1", "brand": "apple", "category": "smartphones" },
+        { "id": 2, "name": "Item 2", "brand": "samsung", "category": "notebooks" },
+        { "id": 3, "name": "Item 3", "brand": "lenovo", "category": "tablets" },
+        { "id": 4, "name": "Item 4", "brand": "apple", "category": "accessories" },
+        { "id": 5, "name": "Item 5", "brand": "samsung", "category": "smartphones" },
+        { "id": 6, "name": "Item 6", "brand": "lenovo", "category": "notebooks" },
+        { "id": 7, "name": "Item 7", "brand": "apple", "category": "tablets" },
+        { "id": 8, "name": "Item 8", "brand": "samsung", "category": "accessories" },
+        { "id": 9, "name": "Item 9", "brand": "lenovo", "category": "smartphones" },
+        { "id": 10, "name": "Item 10", "brand": "apple", "category": "notebooks" },
+        { "id": 11, "name": "Item 11", "brand": "samsung", "category": "tablets" },
+        { "id": 12, "name": "Item 12", "brand": "lenovo", "category": "accessories" },
+        { "id": 13, "name": "Item 13", "brand": "apple", "category": "smartphones" },
+        { "id": 14, "name": "Item 14", "brand": "samsung", "category": "notebooks" },
+        { "id": 15, "name": "Item 15", "brand": "lenovo", "category": "tablets" },
+        { "id": 16, "name": "Item 16", "brand": "apple", "category": "accessories" },
+        { "id": 17, "name": "Item 17", "brand": "samsung", "category": "smartphones" },
+        { "id": 18, "name": "Item 18", "brand": "lenovo", "category": "notebooks" },
+        { "id": 19, "name": "Item 19", "brand": "apple", "category": "tablets" },
+        { "id": 20, "name": "Item 20", "brand": "samsung", "category": "accessories" }
+    ]
+}
