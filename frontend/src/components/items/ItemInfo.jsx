@@ -1,5 +1,5 @@
 // Estilização
-import "./ItemInfo.css"
+import "./Item.css"
 
 
 

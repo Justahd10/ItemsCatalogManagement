@@ -1,9 +1,9 @@
 // Hooks nativos
 import { useContext } from "react"
 // Contextos
-import { ItemsSearchContext } from "../../contexts/ItemsSearch"
+import { ItemsSearchContext } from "../../contexts/ItemsSearchContext"
 // Estilização
-import "./SideBarFilter.css"
+import "./SideBar.css"
 
 
 
@@ -12,7 +12,7 @@ const SideBarFilter = ({ label, attrName, children })=>{
 
     const onChange = (e)=>{
         handleFilterSearch(
-            { 'name': attrName, 'value': e.target.name }, 
+            { 'filterName': attrName, 'filterValue': e.target.name }, 
             e.target.checked
         )
     }

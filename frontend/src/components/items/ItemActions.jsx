@@ -1,5 +1,9 @@
+// Contextos
+import { DialogContentContext } from "../../contexts/DialogContext"
+// Hooks nativos
+import { useContext } from "react"
 // Estilização
-import "./ItemActions.css"
+import "./Item.css"
 
 
 
@@ -16,19 +20,31 @@ const editIcon = (
 )
 
 
-const ItemActions = ({ id })=>{
+const ItemActions = ({ dialogRef, itemData })=>{
+    const { setDialogContent, setDialogType } = useContext(DialogContentContext)
+
     return (
         <div className="">
             <button className="" type="button"
-            onClick={()=>{}}
+            onClick={()=> {
+                setDialogContent(itemData)
+                setDialogType("editItem")
+
+                dialogRef.current.showModal()
+            }}
             >
-                {deleteIcon}
+                {editIcon}
             </button>
 
             <button className="" type="button"
-            onClick={()=>{}}
+            onClick={()=> {
+                setDialogContent(itemData)
+                setDialogType("deleteItem")
+
+                dialogRef.current.showModal()
+            }}
             >
-                {editIcon}
+                {deleteIcon}
             </button>
         </div>
     )

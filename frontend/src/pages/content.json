@@ -1,41 +1,55 @@
 {
-    "newItemDialog": {
+    "itemDialog": {
+        "createItem": {
+            "title": "Criar item",
+            "submitButton": "Adicionar"
+        },
+        "editItem": {
+            "title": "Editar item",
+            "submitButton": "Salvar"
+        },
+        "deleteItem": {
+            "title": "Excluir item",
+            "submitButton": "Excluir"
+        },
         "selectionFields": [
             {
-                "label": "brand",
+                "label": "Marca",
+                "name": "itemBrand",
                 "options": [
                     {
                         "label": "Apple",
-                        "name": "apple"
+                        "value": "apple"
                     },
                     {
                         "label": "Samsung",
-                        "name": "samsung"
+                        "value": "samsung"
                     },
                     {
                         "label": "Lenovo",
-                        "name": "lenovo"
+                        "value": "lenovo"
                     }
                 ]
             },
             {
-                "label": "category",
+                "label": "Categoria",
+                "name": "itemCategory",
                 "options": [
                     {
                         "label": "Smartphones",
-                        "name": "smartphones"
+                        "value": "smartphones"
                     },
                     {
                         "label": "Notebooks",
-                        "name": "notebooks"
+                        "value": "notebooks"
                     },
                     {
                         "label": "Tablets",
-                        "name": "tablets"
+                        "value": "tablets"
                     },
                     {
                         "label": "Acessórios",
-                        "name": "acessories"
+                        "value": "acessories"
                     }
                 ]
             }

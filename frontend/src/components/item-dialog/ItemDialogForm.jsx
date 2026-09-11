@@ -1,9 +1,13 @@
+// Componentes
+import { NameField, SelectionField } from "./ItemDialogFields"
 // Hooks nativos
 import { useForm, FormProvider } from "react-hook-form"
+// Estilização
+import "./ItemDialog.css"
 
 
 
-const ItemDialogForm = ({ children })=>{
+const ItemDialogFormRoot = ({ children })=>{
   const methods = useForm({
     'defaultValues': {
       'item_name': "", 
@@ -20,11 +24,20 @@ const ItemDialogForm = ({ children })=>{
 
   return (
     <FormProvider {...methods}>
-      <form className="" onSubmit={handleSubmit(onSubmit)}>
+      <form className="" 
+      onSubmit={handleSubmit(onSubmit)}
+      >
         {children}
       </form>
     </FormProvider>
   )
+}
+
+
+const ItemDialogForm ={
+  'Root': ItemDialogFormRoot,
+  'NameField': NameField,
+  'SelectionField': SelectionField
 }
 
 export default ItemDialogForm

@@ -17,12 +17,12 @@ function urlParamsReducer(urlParams, search){
                 ...urlParams,
                 'attributes': [
                     ...urlParams.attributes,
-                    search.value
+                    search.filterItem
                 ]
             }
 
             const newAttrs = urlParams.attributes.filter(
-                item => item !== search.value
+                item => item.value !== search.filterItem.filterValue
             )
 
             return {
@@ -31,6 +31,7 @@ function urlParamsReducer(urlParams, search){
             }
     }
 }
+
 
 export const ItemsSearchContext = createContext()
 
@@ -52,10 +53,10 @@ export const ItemsSearchProvider = ({ children })=>{
         })
     }
 
-    function handleFilterSearch(value, checked){
+    function handleFilterSearch(filterItem, checked){
         dispatch({
             'type': 'filter',
-            'value': value,
+            'filterItem': filterItem,
             'checked': checked
         })
     }

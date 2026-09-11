@@ -1,5 +1,5 @@
 // Estilização
-import "./SideBarFilterItem.css"
+import "./SideBar.css"
 
 
 

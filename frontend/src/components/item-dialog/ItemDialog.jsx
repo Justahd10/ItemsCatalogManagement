@@ -1,30 +1,27 @@
 // Componentes
+import ItemDialogActions from "./ItemDialogActions"
 import ItemDialogHeader from "./ItemDialogHeader"
 import ItemDialogForm from "./ItemDialogForm"
-import ItemDialogActions from "./ItemDialogActions"
-import { DialogAction } from "./ItemDialogActions"
-import { DialogNameField, DialogSelectionField } from "./ItemDialogFields.jsx"
+// Estilização
+import "./ItemDialog.css"
 
 
 
-const ItemDialogRoot = ({ label, children })=>{
-  return (
-    <dialog>
-      <h3 className="">{label}</h3>
-      {children}
-    </dialog>
-  )
+const ItemDialogRoot = ({ children })=>{
+  return <dialog>{children}</dialog>
+}
+
+const ItemDialogContent = ({ children })=>{
+  return <div className="">{children}</div>
 }
 
 
 const ItemDialog ={
   'Root': ItemDialogRoot,
   'Header': ItemDialogHeader,
-  'Form': ItemDialogForm,
+  'Content': ItemDialogContent,
   'Actions': ItemDialogActions,
-  'Action': DialogAction,
-  "NameField": DialogNameField,
-  'SelectionField': DialogSelectionField
+  'Form': ItemDialogForm
 }
 
 export default ItemDialog

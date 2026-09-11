@@ -1,6 +1,6 @@
 // Componentes
 import ToolBarSearchField from "./ToolBarSearchField"
-import { ToolBarActions, ToolBarAction } from "./ToolBarActions"
+import ToolBarActions from "./ToolBarActions"
 // Estilização
 import "./ToolBar.css"
 
@@ -14,7 +14,6 @@ const ToolBar = {
     'Root': ToolBarRoot,
     'SearchField': ToolBarSearchField,
     'Actions': ToolBarActions,
-    'Action': ToolBarAction
 }
 
 export default ToolBar

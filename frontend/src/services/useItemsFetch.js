@@ -1,7 +1,7 @@
 // Hooks nativos
 import { useEffect, useContext, useState } from "react";
 // Contextos
-import { ItemsSearchContext } from "../contexts/ItemsSearch";
+import { ItemsSearchContext } from "../contexts/ItemsSearchContext";
 
 
 

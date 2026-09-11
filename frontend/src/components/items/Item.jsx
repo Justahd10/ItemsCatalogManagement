@@ -14,10 +14,18 @@ const ItemRoot = ({ children })=>{
     )
 }
 
-const Item = {
-    'Root': ItemRoot,
-    'Info': ItemInfo,
-    'Actions': ItemActions
+const ItemsRoot = ({ children })=>{
+    return <section className="">{children}</section>
 }
 
-export default Item
+const Items ={
+    'Root': ItemsRoot,
+    'Item': {
+        'Root': ItemRoot,
+        'Info': ItemInfo,
+        'Actions': ItemActions
+    }
+}
+
+
+export default Items

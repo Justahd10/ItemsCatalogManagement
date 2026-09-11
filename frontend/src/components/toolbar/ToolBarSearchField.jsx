@@ -2,9 +2,9 @@
 import { useContext } from "react"
 import { useForm } from "react-hook-form"
 // Contextos
-import { ItemsSearchContext } from "../../contexts/ItemsSearch"
+import { ItemsSearchContext } from "../../contexts/ItemsSearchContext"
 // Estilização
-import "./ToolBarSearchField.css"
+import "./ToolBar.css"
 
 
 
