@@ -3,6 +3,7 @@ import ToolBar from "../components/toolbar/ToolBar"
 import Items from "../components/items/Item"
 import SideBar from "../components/sidebar/SideBar"
 import ItemDialog from "../components/item-dialog/ItemDialog"
+import PaginationBar from "../components/pagination-bar/PaginationBar"
 // Contextos
 import { DialogContentContext } from "../contexts/DialogContext"
 // Hooks nativos
@@ -127,7 +128,7 @@ const ItemsPage = ()=>{
                 <Items.Root>
                     {
                         query.data && 
-                        query.data.payload.map(item =>(
+                        query.data.response.payload.map(item =>(
                             <Items.Item.Root key={item.id}>
                                 <Items.Item.Info
                                 id={item.id} name={item.name}
@@ -146,6 +147,28 @@ const ItemsPage = ()=>{
                     }
                 </Items.Root>
             </main>
+
+            {/* Barra de navegação por páginas */}
+            <aside>
+                {
+                    query.data &&
+                    <>
+                        <PaginationBar.Root>
+                            <PaginationBar.Stepper.Previus />
+                            <PaginationBar.Center 
+                            totalItems={
+                                query.data.response.headers.totalItems
+                            }/>
+                            <PaginationBar.Stepper.Next 
+                            totalItems={
+                                query.data.response.headers.totalItems
+                            }
+                            />
+                        </PaginationBar.Root>
+                    </>
+                }
+            </aside>
+
         </>
     )
 }

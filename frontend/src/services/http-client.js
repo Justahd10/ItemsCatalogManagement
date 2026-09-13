@@ -1,8 +1,8 @@
-function buildRequestResult(code, error, payload = null){
+function buildRequestResult(code, error, response){
     const result = {
         'status': "successful",
         'error': error,
-        'payload': payload,
+        'response': response,
     }
 
     if (code !== 200 || error){
@@ -19,9 +19,14 @@ export async function getItems(queryParams){
             `http://localhost:3000/items/?${queryParams}`
         )
         const data = await response.json()
+        const headers = await response.headers
         const code = await response.status
-        
-        return buildRequestResult(code, null, data)
+
+        return buildRequestResult(code, null, {
+            'payload': data, 'headers': {
+                'totalItems': headers.get("X-Total-Count")
+            }
+        })
 
     } catch (e){
         return buildRequestResult(null, e.message)
@@ -40,7 +45,9 @@ export async function createItem(values){
         const data = response.json()
         const code = response.status
 
-        return buildRequestResult(code, null, data)
+        return buildRequestResult(code, null, {
+            'payload': data
+        })
 
     } catch (e){
 

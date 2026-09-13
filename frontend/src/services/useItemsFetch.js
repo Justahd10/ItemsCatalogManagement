@@ -13,9 +13,15 @@ import { getItems } from "./http-client";
 function resolveSearchParams(urlParams){
     let url = ""
 
-    urlParams.itemName?  
-    url = url + `name=${urlParams.itemName}` : url + url + ""
+    // Paginação
+    const { perPage, currentPage } = urlParams.pagination
+    url = url + `_limit=${perPage}&_page=${currentPage}`
 
+    // Pesquisa por nome de item
+    urlParams.itemName?  
+    url = url + `&name=${urlParams.itemName}` : url + url + ""
+
+    // Filtro por atributos do item
     for (const attr of urlParams.attributes){
         url = url + `&${attr.filterName}=${attr.filterValue}`
     }
@@ -27,6 +33,7 @@ export default function useItemsSearch(){
     // montagem dos parâmetros e da chave de consulta
     const { urlParams } = useContext(ItemsSearchContext)
 
+    // Monta a url para listagem dos itens
     const queryParams = resolveSearchParams(urlParams)
 
     // Consulta dos itens

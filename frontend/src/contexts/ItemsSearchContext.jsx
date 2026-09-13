@@ -30,6 +30,15 @@ function urlParamsReducer(urlParams, search){
                 ...urlParams,
                 'attributes': newAttrs
             }
+        
+        case "pagination":
+            return {
+                ...urlParams,
+                'pagination': {
+                    ...urlParams.pagination,
+                    ...search.paginationValue
+                }
+            }
     }
 }
 
@@ -42,7 +51,11 @@ export const ItemsSearchProvider = ({ children })=>{
         urlParamsReducer, 
         {
             'itemName': null,
-            'attributes': []
+            'attributes': [],
+            'pagination': {
+                'currentPage': 1,
+                'perPage': 10,
+            }
         }
     )
 
@@ -62,10 +75,17 @@ export const ItemsSearchProvider = ({ children })=>{
         })
     }
 
+    function handlePagination(paginationValue){
+        dispatch({
+            'type': "pagination",
+            'paginationValue': paginationValue
+        })
+    }
+
     return (
         <ItemsSearchContext.Provider  value={{  
             urlParams, handleNameSearch,
-            handleFilterSearch
+            handleFilterSearch, handlePagination
         }}>
             {children}
         </ItemsSearchContext.Provider>

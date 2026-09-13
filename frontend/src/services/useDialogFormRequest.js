@@ -33,7 +33,7 @@ export default function useDialogFormRequest(mutationType, itemId){
 
     // Verifica se a query contem o item
     function checkQuery(query){
-        const items = query.state.data.payload
+        const items = query.state.data.response.payload
         return items.some(item => item.id === itemId)
     }
 
