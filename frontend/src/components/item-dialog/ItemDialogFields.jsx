@@ -3,28 +3,28 @@ import { useFormContext } from "react-hook-form"
 
 
 
-export const NameField = ({ currentValue })=>{
+export const NameField = ({ defaultValue })=>{
   const { register } = useFormContext()
 
   return (
     <label className="">
       <span className="">Nome</span>
-      <input className="" placeholder="Ex: Meu novo item" 
-      value={currentValue || ""}
-      {...register("item_name")}
+      <input className="" type="text"
+      placeholder="Ex: Meu novo item" 
+      {...register("name")}
       />
     </label>
   )
 }
 
-export const SelectionField = ({ label, name, children })=>{
+export const SelectionField = ({ children, label, name, defaultValue })=>{
   const { register } = useFormContext()
 
   return (
     <label className="">
       <span className="">{label}</span>
       <select className="" name={name}
-      {...register(label)}
+      {...register(name)}
       >
         {children}
       </select>

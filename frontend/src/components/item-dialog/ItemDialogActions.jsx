@@ -20,7 +20,7 @@ const CancelAction = ({ dialogRef })=>{
 const SubmitAction = ({ label })=>{
   return (
     <button className="" type="submit"
-    form="" enabled={true}
+    form="" enabled="true"
     >
       {label}
     </button>

@@ -7,8 +7,8 @@ import "./ItemDialog.css"
 
 
 
-const ItemDialogRoot = ({ children })=>{
-  return <dialog>{children}</dialog>
+const ItemDialogRoot = ({ children, dialogRef })=>{
+  return <dialog ref={dialogRef}>{children}</dialog>
 }
 
 const ItemDialogContent = ({ children })=>{

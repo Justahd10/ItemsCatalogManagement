@@ -22,7 +22,8 @@ function urlParamsReducer(urlParams, search){
             }
 
             const newAttrs = urlParams.attributes.filter(
-                item => item.value !== search.filterItem.filterValue
+                item => 
+                    item.filterValue !== search.filterItem.filterValue
             )
 
             return {

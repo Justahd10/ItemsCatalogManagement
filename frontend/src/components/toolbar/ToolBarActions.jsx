@@ -12,13 +12,15 @@ const ToolBarActionsRoot = ({ children })=>{
 }
 
 const CreateItem = ({ dialogRef })=>{
-    const { setDialogType } = useContext(DialogContentContext)
+    const { setDialogContent } = useContext(DialogContentContext)
 
     return (
         <button type='button' onClick={()=>{
-            setDialogType("createItem")
+                setDialogContent({
+                    'type': "createItem", 'itemDatas': {}
+                })
 
-            dialogRef.current.showModal()
+            dialogRef.current?.showModal()
         }}>
             Novo Item
         </button>

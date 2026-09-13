@@ -7,16 +7,9 @@ import "./ItemDialog.css"
 
 
 
-const ItemDialogFormRoot = ({ children })=>{
-  const methods = useForm({
-    'defaultValues': {
-      'item_name': "", 
-      'brand': "apple", 
-      'category': "smartphones"
-    }
-  })
-  
-  const { handleSubmit } = methods
+const ItemDialogFormRoot = ({ children, dialogType, itemDatas })=>{
+  const methods = useForm({'defaultValues': itemDatas})
+  const { handleSubmit, formState: { errors } } = methods
 
   const onSubmit = (data)=>{
     // HTTP Client na criação de item

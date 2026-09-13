@@ -6,7 +6,6 @@ import ItemDialog from "../components/item-dialog/ItemDialog"
 
 // Contextos
 import { DialogContentContext } from "../contexts/DialogContext"
-
 // Hooks nativos
 import { useContext, useRef } from "react"
 
@@ -23,13 +22,13 @@ import pageContent from "./content.json"
 const { sideBar, itemDialog } = pageContent
 
 // Auxilia na renderização do ItemDialog.Content
-function renderDialogContent(dialogType, dialogContent){
+function renderDialogContent(dialogType, itemDatas){
     const content = dialogType === "deleteItem"?
-    <p>Deseja mesmo excluir {null}</p> :
-    <ItemDialog.Form.Root>
-      <ItemDialog.Form.NameField 
-      currenValue={null}
-      />
+    <p>Deseja mesmo excluir {itemDatas.name}?</p> :
+    <ItemDialog.Form.Root key={itemDatas.id}
+    dialogType={dialogType} itemDatas={itemDatas}
+    >
+      <ItemDialog.Form.NameField />
 
         {
             itemDialog.selectionFields.map(select=> (
@@ -39,13 +38,11 @@ function renderDialogContent(dialogType, dialogContent){
                 >
                     {
                         select.options.map(option=> {
-                            const selected = 
-                            dialogContent[select.name] === option.value
-
+                            
                             return (
                                 <option key={option.label}
-                                value={option.value} 
-                                selected={selected}>
+                                value={option.value}
+                                >
                                     {option.label}
                                 </option>
                             )
@@ -61,10 +58,13 @@ function renderDialogContent(dialogType, dialogContent){
 
 
 const ItemsPage = ()=>{
+    // Contexto das informações sobre o dialog em aberto
     const dialogRef = useRef(null)
-    const { dialogContent, dialogType } = useContext(DialogContentContext)
+    const { dialogContent: { type: dialogType, itemDatas }
+    } = useContext(DialogContentContext)
 
-    const { datas } = useItemsSearch()
+    // Consultas com base no contexto de pesquisa
+    const { query } = useItemsSearch()
 
     return (
         <>
@@ -75,15 +75,15 @@ const ItemsPage = ()=>{
                 />
 
                 <ItemDialog.Content>
-                    {renderDialogContent(dialogType, dialogContent)}
+                    {renderDialogContent(dialogType, itemDatas)}
                 </ItemDialog.Content>
 
-                <ItemDialog.Actions>
-                <ItemDialog.Actions.Cancel dialogRef={dialogRef}/>
-                <ItemDialog.Actions.Submit dialogType={dialogType}
-                label={itemDialog[dialogType].submitButton}
-                />
-                </ItemDialog.Actions>
+                <ItemDialog.Actions.Root>
+                    <ItemDialog.Actions.Cancel dialogRef={dialogRef}/>
+                    <ItemDialog.Actions.Submit dialogType={dialogType}
+                    label={itemDialog[dialogType].submitButton}
+                    />
+                </ItemDialog.Actions.Root>
             </ItemDialog.Root>
 
             <aside className="">
@@ -124,8 +124,9 @@ const ItemsPage = ()=>{
                 {/* Listagem de itens com base na pesquisa */}
                 <Items.Root>
                     {
-                        datas? datas.map(item =>(
-                            <Items.Item.Root key={item.name}>
+                        query.data && 
+                        query.data.payload.map(item =>(
+                            <Items.Item.Root key={item.id}>
                                 <Items.Item.Info
                                 id={item.id} name={item.name}
                                 />
@@ -134,7 +135,15 @@ const ItemsPage = ()=>{
                                 itemData={item}
                                 />
                             </Items.Item.Root>
-                        )) : null
+                        ))
+                    }
+                    {
+                        query.isPending && 
+                        <div>Carregando...</div>
+                    }
+                    {
+                        query.isError &&
+                        <div>Não foi possível a consulta</div>
                     }
                 </Items.Root>
             </main>

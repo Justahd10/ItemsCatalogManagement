@@ -21,16 +21,15 @@ const editIcon = (
 
 
 const ItemActions = ({ dialogRef, itemData })=>{
-    const { setDialogContent, setDialogType } = useContext(DialogContentContext)
+    const { setDialogContent } = useContext(DialogContentContext)
 
     return (
         <div className="">
             <button className="" type="button"
             onClick={()=> {
-                setDialogContent(itemData)
-                setDialogType("editItem")
+                setDialogContent({'type': "editItem", 'itemDatas': itemData})
 
-                dialogRef.current.showModal()
+                dialogRef.current?.showModal()
             }}
             >
                 {editIcon}
@@ -38,10 +37,9 @@ const ItemActions = ({ dialogRef, itemData })=>{
 
             <button className="" type="button"
             onClick={()=> {
-                setDialogContent(itemData)
-                setDialogType("deleteItem")
+                setDialogContent({'type': "deleteItem", 'itemDatas': itemData})
 
-                dialogRef.current.showModal()
+                dialogRef.current?.showModal()
             }}
             >
                 {deleteIcon}
