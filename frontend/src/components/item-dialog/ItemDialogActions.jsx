@@ -17,11 +17,9 @@ const CancelAction = ({ dialogRef })=>{
   )
 }
 
-const SubmitAction = ({ label })=>{
+const SubmitAction = ({ label, formId })=>{
   return (
-    <button className="" type="submit"
-    form="" enabled="true"
-    >
+    <button className="" type="submit" form={formId}>
       {label}
     </button>
   )

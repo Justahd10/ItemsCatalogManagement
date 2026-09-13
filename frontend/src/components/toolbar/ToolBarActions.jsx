@@ -11,8 +11,8 @@ const ToolBarActionsRoot = ({ children })=>{
     return <div className="">{children}</div>
 }
 
-const CreateItem = ({ dialogRef })=>{
-    const { setDialogContent } = useContext(DialogContentContext)
+const CreateItem = ()=>{
+    const { setDialogContent, dialogRef } = useContext(DialogContentContext)
 
     return (
         <button type='button' onClick={()=>{

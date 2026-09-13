@@ -3,7 +3,6 @@ function buildRequestResult(code, error, payload = null){
         'status': "successful",
         'error': error,
         'payload': payload,
-        
     }
 
     if (code !== 200 || error){
@@ -29,12 +28,20 @@ export async function getItems(queryParams){
     }
 }
 
-export async function createItem(id, values){
+export async function createItem(values){
     try {
-        fetch(`http://localhost:3000/items/${id}`, {
+        const response = await fetch(`http://localhost:3000/items`, {
             'method': "POST",
+            'headers': {
+                'Content-Type': 'application/json'
+            },
             'body': JSON.stringify(values)
         })
+        const data = response.json()
+        const code = response.status
+
+        return buildRequestResult(code, null, data)
+
     } catch (e){
 
     }
@@ -43,22 +50,32 @@ export async function createItem(id, values){
 
 export async function updateItem(id, newValues){
     try {
-        fetch(`http://localhost:3000/items/${id}`, {
+        const response = await fetch(`http://localhost:3000/items/${id}`, {
             'method': "PATCH",
+            'headers': {
+                'Content-Type': "application/json"
+            },
             'body': JSON.stringify(newValues)
         })
-    } catch (e){
+        const code = response.status
 
+        return buildRequestResult(code, null)
+
+    } catch (e){
+        return buildRequestResult(null, e.message)
     }
 }
 
-export async function deleteItem(){
+export async function deleteItem(id){
     try {
-        fetch(`http://localhost:3000/items/${id}`, {
-            'method': "DELETE",
-            'body': JSON.stringify(newValues)
+        const response = await fetch(`http://localhost:3000/items/${id}`, {
+            'method': "DELETE"
         })
-    } catch (e){
+        const code = response.status
 
+        return buildRequestResult(code, null)
+
+    } catch (e){
+        return buildRequestResult(null, e.message)
     }
 }

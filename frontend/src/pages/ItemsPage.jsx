@@ -3,15 +3,12 @@ import ToolBar from "../components/toolbar/ToolBar"
 import Items from "../components/items/Item"
 import SideBar from "../components/sidebar/SideBar"
 import ItemDialog from "../components/item-dialog/ItemDialog"
-
 // Contextos
 import { DialogContentContext } from "../contexts/DialogContext"
 // Hooks nativos
-import { useContext, useRef } from "react"
-
+import { useContext } from "react"
 // Hooks customizados
 import useItemsSearch from "../services/useItemsFetch"
-
 // Estilização e dados da página
 import "./ItemsPage.css"
 import pageContent from "./content.json"
@@ -23,34 +20,38 @@ const { sideBar, itemDialog } = pageContent
 
 // Auxilia na renderização do ItemDialog.Content
 function renderDialogContent(dialogType, itemDatas){
-    const content = dialogType === "deleteItem"?
-    <p>Deseja mesmo excluir {itemDatas.name}?</p> :
-    <ItemDialog.Form.Root key={itemDatas.id}
+    const content = <ItemDialog.Form.Root key={itemDatas.id} 
     dialogType={dialogType} itemDatas={itemDatas}
     >
-      <ItemDialog.Form.NameField />
+      {
+        dialogType === "deleteItem" ?
+        <p>Deseja mesmo excluir {itemDatas.name}?</p> :
+        <>
+          <ItemDialog.Form.NameField />
 
-        {
-            itemDialog.selectionFields.map(select=> (
-                <ItemDialog.Form.SelectionField
-                key={select.label}
-                label={select.label} name={select.name}
-                >
-                    {
-                        select.options.map(option=> {
-                            
-                            return (
-                                <option key={option.label}
-                                value={option.value}
-                                >
-                                    {option.label}
-                                </option>
-                            )
-                        })
-                    }
-                </ItemDialog.Form.SelectionField>
-            ))
-        }
+          {
+              itemDialog.selectionFields.map(select=> (
+                  <ItemDialog.Form.SelectionField
+                  key={select.label}
+                  label={select.label} name={select.name}
+                  >
+                      {
+                          select.options.map(option=> {
+                              
+                              return (
+                                  <option key={option.label}
+                                  value={option.value}
+                                  >
+                                      {option.label}
+                                  </option>
+                              )
+                          })
+                      }
+                  </ItemDialog.Form.SelectionField>
+              ))
+          }
+        </>
+      }
     </ItemDialog.Form.Root>
 
     return content
@@ -59,8 +60,8 @@ function renderDialogContent(dialogType, itemDatas){
 
 const ItemsPage = ()=>{
     // Contexto das informações sobre o dialog em aberto
-    const dialogRef = useRef(null)
-    const { dialogContent: { type: dialogType, itemDatas }
+    const {
+        dialogContent: { type: dialogType, itemDatas }, dialogRef
     } = useContext(DialogContentContext)
 
     // Consultas com base no contexto de pesquisa
@@ -80,7 +81,8 @@ const ItemsPage = ()=>{
 
                 <ItemDialog.Actions.Root>
                     <ItemDialog.Actions.Cancel dialogRef={dialogRef}/>
-                    <ItemDialog.Actions.Submit dialogType={dialogType}
+                    <ItemDialog.Actions.Submit
+                    formId={`dialog-form-${itemDatas.id}`}
                     label={itemDialog[dialogType].submitButton}
                     />
                 </ItemDialog.Actions.Root>
@@ -117,7 +119,7 @@ const ItemsPage = ()=>{
                     <ToolBar.SearchField />
 
                     <ToolBar.Actions.Root>
-                        <ToolBar.Actions.CreateItem dialogRef={dialogRef}/>
+                        <ToolBar.Actions.CreateItem />
                     </ToolBar.Actions.Root>
                 </ToolBar.Root>
 
@@ -130,10 +132,7 @@ const ItemsPage = ()=>{
                                 <Items.Item.Info
                                 id={item.id} name={item.name}
                                 />
-                                <Items.Item.Actions
-                                dialogRef={dialogRef}
-                                itemData={item}
-                                />
+                                <Items.Item.Actions itemData={item} />
                             </Items.Item.Root>
                         ))
                     }

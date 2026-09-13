@@ -2,22 +2,28 @@
 import { NameField, SelectionField } from "./ItemDialogFields"
 // Hooks nativos
 import { useForm, FormProvider } from "react-hook-form"
+// Hooks customizados
+import useDialogFormRequest from "../../services/useDialogFormRequest"
 // Estilização
 import "./ItemDialog.css"
 
 
 
 const ItemDialogFormRoot = ({ children, dialogType, itemDatas })=>{
+  // Estado do formulário do dialog
   const methods = useForm({'defaultValues': itemDatas})
-  const { handleSubmit, formState: { errors } } = methods
+  const { handleSubmit } = methods
 
-  const onSubmit = (data)=>{
-    // HTTP Client na criação de item
-  }
-
+  // Estado da requisição
+  const { mutation } = useDialogFormRequest(dialogType, itemDatas.id)
+  
+  // Envio dos dados
+  const onSubmit = (data)=> mutation.mutate(data)
+  
   return (
     <FormProvider {...methods}>
       <form className="" 
+      id={`dialog-form-${itemDatas.id}`}
       onSubmit={handleSubmit(onSubmit)}
       >
         {children}

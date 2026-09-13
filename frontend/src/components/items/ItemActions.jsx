@@ -20,8 +20,8 @@ const editIcon = (
 )
 
 
-const ItemActions = ({ dialogRef, itemData })=>{
-    const { setDialogContent } = useContext(DialogContentContext)
+const ItemActions = ({ itemData })=>{
+    const { setDialogContent, dialogRef } = useContext(DialogContentContext)
 
     return (
         <div className="">
