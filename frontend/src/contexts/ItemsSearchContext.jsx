@@ -1,9 +1,8 @@
-// Hooks nativos
 import { createContext, useReducer } from "react";
 
 
 
-// reducerFunction
+// Atualizador do contexto
 function urlParamsReducer(urlParams, search){
     switch(search.type){
         case "nameChange":
@@ -59,7 +58,7 @@ export const ItemsSearchProvider = ({ children })=>{
         }
     )
 
-    // reducer functionalitys
+    // Tipos de atualizações do contexto
     function handleNameSearch(itemName){
         dispatch({
             'type': 'nameChange',
