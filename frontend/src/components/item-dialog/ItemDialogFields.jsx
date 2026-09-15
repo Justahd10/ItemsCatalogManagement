@@ -3,7 +3,7 @@ import { useFormContext } from "react-hook-form"
 
 
 
-export const NameField = ({ defaultValue })=>{
+export const NameField = ()=>{
   const { register } = useFormContext()
 
   return (
@@ -17,7 +17,7 @@ export const NameField = ({ defaultValue })=>{
   )
 }
 
-export const SelectionField = ({ children, label, name, defaultValue })=>{
+export const SelectionField = ({ children, label, name })=>{
   const { register } = useFormContext()
 
   return (

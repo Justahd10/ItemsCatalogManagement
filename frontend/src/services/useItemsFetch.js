@@ -13,13 +13,17 @@ import { getItems } from "./http-client";
 function resolveSearchParams(urlParams){
     let url = ""
 
+    // Ordenação
+    const { _sort, _order } = urlParams.ordenation
+    url = url + `_sort=${_sort}&_order=${_order}`
+
     // Paginação
     const { perPage, currentPage } = urlParams.pagination
-    url = url + `_limit=${perPage}&_page=${currentPage}`
+    url = url + `&_limit=${perPage}&_page=${currentPage}`
 
     // Pesquisa por nome de item
     urlParams.itemName?  
-    url = url + `&name=${urlParams.itemName}` : url + url + ""
+    url = url + `&name_like=${urlParams.itemName}` : url + url + ""
 
     // Filtro por atributos do item
     for (const attr of urlParams.attributes){

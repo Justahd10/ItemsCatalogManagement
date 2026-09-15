@@ -98,5 +98,50 @@
                 ]
             }
         ]
+    },
+
+    "toolBar": {
+        "selectorFields": [
+            {
+                "name": "perPage",
+                "label": "Quantidade por página",
+                "options": [
+                    {
+                        "value": "20",
+                        "label": "20"
+                    },
+                    {
+                        "value": "25",
+                        "label": "25"
+                    },
+                    {
+                        "value": "30",
+                        "label": "30"
+                    }
+                ]
+            },
+            {
+                "name": "ordenation",
+                "label": "Ordenar por",
+                "options": [
+                    {
+                        "value": "id-asc",
+                        "label": "Menor preço"
+                    },
+                    {
+                        "value": "id-desc",
+                        "label": "Maior preço"
+                    },
+                    {
+                        "value": "name-asc",
+                        "label": "Ordem alfabética A-Z"
+                    },
+                    {
+                        "value": "name-desc",
+                        "label": "Ordem alfabética Z-A"
+                    }
+                ]
+            }
+        ]
     }
 }

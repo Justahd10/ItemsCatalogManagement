@@ -14,7 +14,18 @@ const ToolBarSearchField = ({ label })=>{
         'defaultValues': {'item_name': ""},
     })
     
-    const onSubmit = (data)=> handleNameSearch(data.item_name)
+    const onSubmit = (data)=> {
+        // Normalização de texto
+        const words = data.item_name.toLowerCase()
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+        .split(" ")
+        
+        // Criação de regex
+        const regex = (`(${words.join("|")})`)
+
+        // Atualização da pesquisa por texto
+        handleNameSearch(regex)
+    }
     
     return (
         <form className="" onSubmit={handleSubmit(onSubmit)}>

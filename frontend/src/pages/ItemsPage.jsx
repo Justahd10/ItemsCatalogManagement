@@ -17,7 +17,7 @@ import pageContent from "./content.json"
 
 
 // Dados de conteúdo da página
-const { sideBar, itemDialog } = pageContent
+const { sideBar, itemDialog, toolBar } = pageContent
 
 // Auxilia na renderização do ItemDialog.Content
 function renderDialogContent(dialogType, itemDatas){
@@ -118,7 +118,22 @@ const ItemsPage = ()=>{
                 {/* Barra de ferramentas para ações primárias */}
                 <ToolBar.Root>
                     <ToolBar.SearchField />
-
+                    {
+                        toolBar.selectorFields.map(select=> (
+                            <ToolBar.SelectorField key={select.name}
+                            name={select.name} label={select.label}
+                            >
+                                {
+                                    select.options.map(option=> (
+                                        <option key={option.value}
+                                        value={option.value}>
+                                            {option.label}
+                                        </option>
+                                    ))
+                                }
+                            </ToolBar.SelectorField>
+                        ))
+                    }
                     <ToolBar.Actions.Root>
                         <ToolBar.Actions.CreateItem />
                     </ToolBar.Actions.Root>
